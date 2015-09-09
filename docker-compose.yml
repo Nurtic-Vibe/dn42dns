@@ -4,8 +4,14 @@ zonebuild:
   - ./srv:/srv
   hostname:     zb
   domainname:   ns.xuu.dn42
-  entrypoint:   /bin/true
-
+  entrypoint:   /bin/bash
+  command:      /opt/zonebuild/scripts/run.sh root res zone arpa -update
+  
+shell:
+  image: "debian:jessie"
+  volumes_from:
+  - zonebuild
+  entrypoint: /bin/bash
 
 tier0:
   build: build/named

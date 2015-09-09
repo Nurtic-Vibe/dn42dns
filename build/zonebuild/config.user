@@ -1,10 +1,10 @@
-MTN="mtn -kjon@xuu.cc"
-ZBUILD=/srv/dist/zonebuild/src/zbuild
+MTN="mtn"
+ZBUILD=/opt/zonebuild/src/zbuild
 
-REGISTRY_BASE_PATH=/srv/dist
+REGISTRY_BASE_PATH=/srv
 REGISTRY_PATH=${REGISTRY_BASE_PATH}/net.dn42.registry/data
 
-OUT_PATH=/srv/etc/bind/
+OUT_PATH=/srv/bind/dn42/
 CONTACT_EMAIL="xuu.dn42.us"
 
 PERSON_HANDLE=ORG-XUU
