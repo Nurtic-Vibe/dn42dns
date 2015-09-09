@@ -1,0 +1,4 @@
+[submodule "dist/zonebuild"]
+	path = dist/zonebuild
+	url = https://github.com/nixnodes/zonebuild.git
+	branch = master

@@ -1,0 +1,49 @@
+zonebuild:
+  build: build/zonebuild
+  volumes:
+  - ./srv:/srv
+  hostname:     zb
+  domainname:   ns.xuu.dn42
+  entrypoint:   /bin/true
+
+
+tier0:
+  build: build/named
+  volumes_from:
+  - zonebuild
+  ports:
+  - "127.0.1.1:53:53"
+  hostname:     tier0
+  domainname:   ns.xuu.dn42
+  entrypoint:   /usr/sbin/named
+  command:      -g -c /srv/bind/named.conf.tier0 -u bind
+tier1:
+  build: build/named
+  volumes_from:
+  - zonebuild
+  ports:
+  - "127.0.1.1:53:53"
+  hostname:     tier0
+  domainname:   ns.xuu.dn42
+  entrypoint:   /usr/sbin/named
+  command:      -g -c /srv/bind/named.conf.tier1 -u bind
+tier2:
+  build: build/named
+  volumes_from:
+  - zonebuild
+  ports:
+  - "127.0.1.1:53:53"
+  hostname:     tier0
+  domainname:   ns.xuu.dn42
+  entrypoint:   /usr/sbin/named
+  command:      -g -c /srv/bind/named.conf.tier2 -u bind
+resolver:
+  build: build/named
+  volumes_from:
+  - zonebuild
+  ports:
+  - "127.0.1.1:53:53"
+  hostname:     tier0
+  domainname:   ns.xuu.dn42
+  entrypoint:   /usr/sbin/named
+  command:      -g -c /srv/bind/named.conf.resolver -u bind

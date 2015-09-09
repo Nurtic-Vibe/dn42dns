@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ "$1" == "-t" ]; then
+  DOCKER_ID=${2?"Usage: $0 SERVICE <NUM> or $0 -t NAME|HASH"}
+else
+  BASE=${PWD##*/}
+  NAME=${1?"Usage: $0 SERVICE <NUM> or $0 -t NAME|HASH"}
+  NUM=${2-'1'}
+  DOCKER_ID="${BASE}_${NAME}_${NUM}"
+fi
+
+[[ "$EUID" -ne "0" ]] && SUDO='sudo'
+
+echo "Entering $DOCKER_ID:"
+$SUDO docker exec -t -i $DOCKER_ID /bin/bash
+

@@ -1,0 +1,23 @@
+#/bin/bash
+
+[[ "$EUID" -ne "0" ]] && SUDO='sudo'
+
+$SUDO bin/docker-compose up -d
+
+#
+# $SUDO docker rm -f web_nginx web_php web_redis
+#
+# $SUDO docker run -d --name="web_redis" redis
+#
+# $SUDO docker run -d -v /opt/web/srv:/srv \
+#                     --link web_redis:redis \
+#                     --security-opt="label:level:s0:c500" \
+#                     --name="web_php" \
+#                     --entrypoint /opt/local/sbin/php-fpm web_php -c /srv/config -y /srv/config/fpm.conf
+#
+# $SUDO docker run -d -v /opt/web/srv:/srv \
+#                     --security-opt="label:level:s0:c500" \
+#                     --net="host" \
+#                     --name="web_nginx" \
+#                     --entrypoint /opt/local/sbin/nginx web_nginx -c /srv/config/nginx/nginx.conf
+#

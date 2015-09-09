@@ -1,0 +1,18 @@
+options {
+        directory "/var/cache/bind";
+
+        dnssec-validation no;
+        auth-nxdomain yes;
+        listen-on-v6 { any; };
+
+        allow-query { any; };
+        allow-transfer { none; };
+        allow-recursion { any; };
+        recursion yes;
+        empty-zones-enable no;
+
+        include "/srv/etc/bind/dn42/res/named-forwards.conf";
+
+        hostname "res-ns.xuu.dn42";
+};
+
