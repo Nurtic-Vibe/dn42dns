@@ -14,4 +14,4 @@ options {
         hostname "tier2-ns.xuu.dn42";
 };
 
-include "/srv/etc/bind/dn42/tier2/named.conf";
+include "/srv/bind/dn42/tier2/named.conf";

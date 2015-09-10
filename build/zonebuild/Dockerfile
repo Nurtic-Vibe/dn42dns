@@ -13,5 +13,8 @@ ADD    config.user /opt/zonebuild/scripts/
 
 WORKDIR /opt/zonebuild/scripts
 
+#Initial sync
+RUN     /opt/zonebuild/scripts/run.sh root res zone arpa -update
+
 ENTRYPOINT  /bin/sh
 CMD    /opt/zonebuild/scripts/run.sh root res zone arpa -update

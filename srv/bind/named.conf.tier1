@@ -15,4 +15,4 @@ options {
 
 };
 
-include "/srv/etc/bind/dn42/tier1/named.conf";  
+include "/srv/bind/dn42/tier1/named.conf";  
