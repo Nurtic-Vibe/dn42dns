@@ -9,10 +9,12 @@ zonebuild:
 
 exabgp:
   build: build/exabgp
+  volumes_from:
+  - zonebuild
   hostname:     bgp
   domainname:   ns.grmml.dn42
   entrypoint:   /bin/bash
-  command:      /opt/exabgp/sbin/exabgp /srv/exabgp/exabgp.conf &> /srv/log/exabgp.log
+  command:      /opt/exabgp/sbin/exabgp /srv/exabgp/exabgp.conf 
   links:
   - tier0
   - tier1

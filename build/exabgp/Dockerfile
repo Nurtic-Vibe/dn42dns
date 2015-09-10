@@ -8,4 +8,4 @@ RUN	apt-get install -y python build-essential git dnsutils
 RUN     git clone -b master https://github.com/Exa-Networks/exabgp.git /opt/exabgp
 
 ENTRYPOINT  /bin/bash
-CMD    /opt/exabgp/sbin/exabgp /srv/exabgp/exabgp.conf &> /srv/log/exabgp.log
+CMD    /opt/exabgp/sbin/exabgp /srv/exabgp/exabgp.conf

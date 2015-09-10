@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./watchdog.conf
+source `dirname`/watchdog.conf
 
 DIG=dig
 TARGETS=( "172.23.0.53" "$TIER0" "$TIER1" )
