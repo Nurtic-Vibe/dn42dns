@@ -11,8 +11,8 @@ options {
         recursion yes;
         empty-zones-enable no;
 
-        include "/srv/etc/bind/dn42/res/named-forwards.conf";
-
         hostname "res-ns.xuu.dn42";
 };
 
+
+include "/srv/bind/dn42/res/named-forwards.conf";

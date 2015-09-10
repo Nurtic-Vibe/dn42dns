@@ -2,7 +2,7 @@
 
 [[ "$EUID" -ne "0" ]] && SUDO='sudo'
 
-$SUDO bin/docker-compose up -d
+$SUDO docker-compose up -d
 
 #
 # $SUDO docker rm -f web_nginx web_php web_redis

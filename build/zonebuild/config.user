@@ -15,4 +15,4 @@ SERVER_NAME_TIER1="x.zone-servers.dn42"
 SERVER_NAME_TIER1_ARPA="x.in-addr-servers.dn42" # /24 
 SERVER_NAME_TIER2_ARPA="x.dn42-servers.dn42" # < /24
 
-SYNC_SERVERS=(  "mtn://172.22.141.181/?net.dn42.registry" )
+SYNC_SERVERS=(  "mtn://172.23.149.20/?net.dn42.registry" )

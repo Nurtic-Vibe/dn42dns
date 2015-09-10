@@ -18,7 +18,7 @@ tier0:
   volumes_from:
   - zonebuild
   ports:
-  - "127.0.1.1:53:53"
+  - "127.0.1.0:53:53"
   hostname:     tier0
   domainname:   ns.xuu.dn42
   entrypoint:   /usr/sbin/named
@@ -38,7 +38,7 @@ tier2:
   volumes_from:
   - zonebuild
   ports:
-  - "127.0.1.1:53:53"
+  - "127.0.1.2:53:53"
   hostname:     tier0
   domainname:   ns.xuu.dn42
   entrypoint:   /usr/sbin/named
@@ -48,7 +48,7 @@ resolver:
   volumes_from:
   - zonebuild
   ports:
-  - "127.0.1.1:53:53"
+  - "127.0.1.53:53:53"
   hostname:     tier0
   domainname:   ns.xuu.dn42
   entrypoint:   /usr/sbin/named
