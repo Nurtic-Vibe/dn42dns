@@ -6,6 +6,18 @@ zonebuild:
   domainname:   ns.xuu.dn42
   entrypoint:   /bin/bash
   command:      /opt/zonebuild/scripts/run.sh root res zone arpa -update
+
+exabgp:
+  build: build/exabgp
+  hostname:     bgp
+  domainname:   ns.grmml.dn42
+  entrypoint:   /bin/bash
+  command:      /opt/exabgp/sbin/exabgp /srv/exabgp/exabgp.conf &> /srv/log/exabgp.log
+  links:
+  - tier0
+  - tier1
+  - tier2
+  - resolver
   
 shell:
   image: "debian:jessie"

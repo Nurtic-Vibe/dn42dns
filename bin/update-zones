@@ -1,0 +1,6 @@
+#/bin/bash
+
+[[ "$EUID" -ne "0" ]] && SUDO='sudo'
+
+$SUDO docker-compose up -d
+
