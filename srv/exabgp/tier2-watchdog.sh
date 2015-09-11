@@ -1,11 +1,9 @@
 #!/bin/bash
-source `dirname`/watchdog.conf
-
 DIG=dig
 TARGETS=( "tier2" )
 ZONE=0.23.172.in-addr.arpa
-ROUTE="$TIER2/32"
-NEXTHOP="$OWN_IP" # own ip
+ROUTE="172.23.0.75/32"
+NEXTHOP="172.23.149.70" # own ip
 
 INTERVAL=60
 
