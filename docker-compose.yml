@@ -3,7 +3,7 @@ zonebuild:
   volumes:
   - ./srv:/srv
   hostname:     zb
-  domainname:   ns.xuu.dn42
+  domainname:   ns.grmml.dn42
   entrypoint:   /bin/bash
   command:      /opt/zonebuild/scripts/run.sh root res zone arpa -update
 
@@ -11,15 +11,17 @@ exabgp:
   build: build/exabgp
   volumes_from:
   - zonebuild
+  expose:
+  - "179:179"
   hostname:     bgp
   domainname:   ns.grmml.dn42
   entrypoint:   /bin/bash
   command:      /opt/exabgp/sbin/exabgp /srv/exabgp/exabgp.conf 
   links:
-  - tier0
-  - tier1
-  - tier2
-  - resolver
+  - tier0:tier0
+  - tier1:tier1
+  - tier2:tier2
+  - resolver:res
   
 shell:
   image: "debian:jessie"
@@ -31,39 +33,39 @@ tier0:
   build: build/named
   volumes_from:
   - zonebuild
-  ports:
-  - "127.0.1.0:53:53"
+  expose:
+  - "53:53"
   hostname:     tier0
-  domainname:   ns.xuu.dn42
+  domainname:   ns.grmml.dn42
   entrypoint:   /usr/sbin/named
   command:      -g -c /srv/bind/named.conf.tier0 -u bind
 tier1:
   build: build/named
   volumes_from:
   - zonebuild
-  ports:
-  - "127.0.1.1:53:53"
+  expose:
+  - "53:53"
   hostname:     tier0
-  domainname:   ns.xuu.dn42
+  domainname:   ns.grmml.dn42
   entrypoint:   /usr/sbin/named
   command:      -g -c /srv/bind/named.conf.tier1 -u bind
 tier2:
   build: build/named
   volumes_from:
   - zonebuild
-  ports:
-  - "127.0.1.2:53:53"
+  expose:
+  - "53:53"
   hostname:     tier0
-  domainname:   ns.xuu.dn42
+  domainname:   ns.grmml.dn42
   entrypoint:   /usr/sbin/named
   command:      -g -c /srv/bind/named.conf.tier2 -u bind
 resolver:
   build: build/named
   volumes_from:
   - zonebuild
-  ports:
-  - "127.0.1.53:53:53"
+  expose:
+  - "53:53"
   hostname:     tier0
-  domainname:   ns.xuu.dn42
+  domainname:   ns.grmml.dn42
   entrypoint:   /usr/sbin/named
   command:      -g -c /srv/bind/named.conf.resolver -u bind

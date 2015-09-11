@@ -1,0 +1,12 @@
+group res {
+	neighbor $NEIGHBOR {
+		router-id $RES;
+		local-address $RES;
+		local-as $AS;
+		peer-as $OWN_AS;
+	}
+	process watch-res {
+		run /srv/exabgp/res-watchdog.sh;
+	}
+}
+
