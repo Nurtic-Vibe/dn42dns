@@ -23,12 +23,6 @@ exabgp:
   - tier2:tier2
   - resolver:res
   
-shell:
-  image: "debian:jessie"
-  volumes_from:
-  - zonebuild
-  entrypoint: /bin/bash
-
 tier0:
   build: build/named
   volumes_from:
@@ -45,7 +39,7 @@ tier1:
   - zonebuild
   expose:
   - "53:53"
-  hostname:     tier0
+  hostname:     tier1
   domainname:   ns.grmml.dn42
   entrypoint:   /usr/sbin/named
   command:      -g -c /srv/bind/named.conf.tier1 -u bind
@@ -55,7 +49,7 @@ tier2:
   - zonebuild
   expose:
   - "53:53"
-  hostname:     tier0
+  hostname:     tier2
   domainname:   ns.grmml.dn42
   entrypoint:   /usr/sbin/named
   command:      -g -c /srv/bind/named.conf.tier2 -u bind
@@ -65,7 +59,7 @@ resolver:
   - zonebuild
   expose:
   - "53:53"
-  hostname:     tier0
+  hostname:     res
   domainname:   ns.grmml.dn42
   entrypoint:   /usr/sbin/named
   command:      -g -c /srv/bind/named.conf.resolver -u bind
