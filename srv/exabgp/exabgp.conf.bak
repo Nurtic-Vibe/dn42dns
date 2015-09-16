@@ -1,0 +1,14 @@
+neighbor 172.23.149.65 {
+  router-id 172.23.0.53;
+  local-address 172.23.149.66;
+  local-as 4242420122;
+  peer-as 4242420123;
+}
+
+process add-routes {
+  run /srv/exabgp/res-watchdog.sh;
+  run /srv/exabgp/tier0-watchdog.sh;
+  run /srv/exabgp/tier1-watchdog.sh;
+  run /srv/exabgp/tier2-watchdog.sh;
+  encoder text;
+}
